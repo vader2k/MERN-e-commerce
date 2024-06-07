@@ -1,9 +1,47 @@
+import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
+import logo from '../assets/logo.png'
+import cart_icon from '../assets/cart_icon.png'
 
 
 const Navbar = () => {
+  const [menu, setMenu] = useState('Shop')
+
+  const navCat = [
+    {id:1, name: 'Shop', path: '/shop'},
+    {id:2, name: 'Men', path: '/men'},
+    {id:3, name: 'Women', path: '/women'},
+    {id:4, name: 'Kids', path: '/kids'},
+  ]
+
   return (
-    <div>Navbar</div>
+    <nav className='flex items-center justify-around shadow-md p-5'>
+      <div className='flex items-center gap-3'>
+        <img className='w-[40px]' src={logo} alt="logo" />
+        <p className='text-[#171717] text-[1.5rem] font-medium'>SHOPPER</p>
+      </div>
+      <ul className='flex items-center gap-12 text-[#626262] font-medium'>
+        {navCat.map((item) => (
+          <li className='cursor-pointer relative' key={item.id}>
+            <NavLink 
+              to={item.path}
+              onClick={()=> setMenu(item.name)}
+            >
+              <span>{item.name}</span>
+              {menu === item.name ? <div className='absolute bottom-[-5px] h-[3px] w-[20px] bg-red-500 rounded-3xl'/> : ''}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+      <div className='flex items-center gap-5'>
+        <button className='px-6 py-2 border border-gray-400 rounded-2xl font-medium'>Login</button>
+        <div className='relative'>
+          <img className='w-[20px]' src={cart_icon} alt="cart" />
+          <div className='absolute h-[10px] w-[10px] right-[-10px] top-[-10px] bg-red-500 p-2 flex items-center justify-center rounded-full text-white text-[0.85rem]'>0</div>
+        </div>
+      </div>
+    </nav>
   )
 }
 
-export default Navbar 
+export default Navbar
