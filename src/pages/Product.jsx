@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import Breadcrum from "../components/Breadcrum"
 import { ShopContext } from '../context/ShopContext'
+import ProductDisplay from "../components/ProductDisplay"
 
 
 const Product = () => {
@@ -14,6 +15,7 @@ const Product = () => {
   return (
     <div>
       {product ? <Breadcrum product={product} /> : <p>Product not found</p>}
+      {product? <ProductDisplay product={product}/> : <p>Product not found</p>}
     </div>
   )
 }

@@ -5,9 +5,8 @@ const Breadcrum = (props) => {
 
     
   return (
-    <div>
+    <div className='flex items-center gap-4 text-[#5e5e5e] capitalize text-[13px] font-medium my-[60px] mx-[170px]'>
         HOME <img src={arrow_icon} alt="arrow" /> SHOP <img src={arrow_icon} alt="arrow" />{product?.product.category} <img src={arrow_icon} alt="arrow" /> {product?.product.name}
-
     </div>
   )
 }
