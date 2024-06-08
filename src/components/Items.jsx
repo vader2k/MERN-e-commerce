@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const Items = (props) => {
   return (
     <section className="w-[250px] hover:scale-[1.05] transition-all cursor-pointer">
-        <Link to={`/product/${props.id}`}>
+        <Link onClick={window.scrollTo(0,0)} to={`/product/${props.id}`}>
           <img src={props.image} alt="" />
         </Link>
         <p className="my-[6px]">{props.name}</p>

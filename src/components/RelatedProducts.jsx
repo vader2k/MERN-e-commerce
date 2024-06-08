@@ -3,10 +3,10 @@ import Items from './Items'
 
 const RelatedProducts = () => {
   return (
-    <div>
-        <h1>Related Products</h1>
-        <hr />
-        <div>
+    <div className='flex flex-col items-center gap-[10px] h-[90vh]'>
+        <h1 className='text-[#171717] text-[1.5rem] font-medium'>Related Products</h1>
+        <hr className='w-[150px] h-[4px] rounded-[10px] bg-[#252525]'/>
+        <div className='mt-[50px] flex gap-[30px]'>
             {data_product.map((item, i) => (
                 <Items 
                     key={i} 
