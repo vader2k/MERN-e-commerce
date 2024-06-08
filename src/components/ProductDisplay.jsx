@@ -1,9 +1,11 @@
 import star_icon from '../assets/star_icon.png'
 import star_dull_icon from '../assets/star_dull_icon.png'
+import { useContext } from 'react'
+import { ShopContext } from '../context/ShopContext'
 
 const ProductDisplay = (props) => {
-    console.log(props)
     const product = props
+    const {addToCart} = useContext(ShopContext)
 
   return (
     <div className='flex w-full px-[40px]'>
@@ -46,7 +48,7 @@ const ProductDisplay = (props) => {
                     <div className='py-[16px] px-[20px] border border-gray-400 cursor-pointer'>XXL</div>
                 </div>
             </div>
-            <button className='py-[20px] px-[40px] font-medium w-[200px] text-[14px] text-white bg-red-500 mb-[40px] outline-none'>ADD TO CART</button>
+            <button onClick={()=> {addToCart(product.product.id)}} className='py-[20px] px-[40px] font-medium w-[200px] text-[14px] text-white bg-red-500 mb-[40px] outline-none'>ADD TO CART</button>
             <p className='mt-[10px]'>
                 <span className='font-bold'>category :</span>Women, T-shirt, Crop-Top
             </p>

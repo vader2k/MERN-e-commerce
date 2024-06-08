@@ -1,9 +1,9 @@
-
+import CartItem from "../components/CartItem"
 
 const Cart = () => {
   return (
     <div>
-      cart
+      <Cart />
     </div>
   )
 }
