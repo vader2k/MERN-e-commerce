@@ -10,12 +10,12 @@ const NewCollections = () => {
         <div className='mt-[50px] grid grid-cols-4 gap-[30px]'>
             {new_collection.map((item, i) => (
                 <Items 
-                key={i} 
-                id={item.id}
-                name={item.name}
-                image={item.image}
-                new_price={item.new_price}
-                old_price={item.old_price}
+                  key={i} 
+                  id={item.id}
+                  name={item.name}
+                  image={item.image}
+                  new_price={item.new_price}
+                  old_price={item.old_price}
                 />
             ))}
         </div>
