@@ -6,3 +6,6 @@
     background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
 }
 
+.format {
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+}
