@@ -1,11 +1,13 @@
 import { Link, NavLink } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import logo from '../assets/logo.png'
 import cart_icon from '../assets/cart_icon.png'
+import { ShopContext } from '../context/ShopContext'
 
 
 const Navbar = () => {
   const [menu, setMenu] = useState('Shop')
+  const { getTotalCartItems } = useContext(ShopContext)
 
   const navCat = [
     {id:1, name: 'Shop', path: '/'},
@@ -40,7 +42,7 @@ const Navbar = () => {
         <Link to='/cart'>
           <div className='relative'>
             <img className='w-[20px]' src={cart_icon} alt="cart" />
-            <div className='absolute h-[10px] w-[10px] right-[-10px] top-[-10px] bg-red-500 p-2 flex items-center justify-center rounded-full text-white text-[0.85rem]'>0</div>
+            <div className='absolute h-[10px] w-[10px] right-[-10px] top-[-10px] bg-red-500 p-2 flex items-center justify-center rounded-full text-white text-[0.85rem]'>{getTotalCartItems()}</div>
           </div>
         </Link>
       </div>
