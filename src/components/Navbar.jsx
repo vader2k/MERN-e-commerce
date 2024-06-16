@@ -9,6 +9,11 @@ const Navbar = () => {
   const [menu, setMenu] = useState('Shop')
   const { getTotalCartItems } = useContext(ShopContext)
 
+  const handleLogOut = () => {
+    localStorage.removeItem('auth')
+    window.location.replace('/')
+  }
+
   const navCat = [
     {id:1, name: 'Shop', path: '/'},
     {id:2, name: 'Men', path: '/men'},
@@ -36,9 +41,11 @@ const Navbar = () => {
         ))}
       </ul>
       <div className='flex items-center gap-5'>
-        <Link to='/login'>
+        {localStorage.getItem('auth') 
+        ? <button className='px-6 py-2 border border-gray-400 rounded-2xl font-medium' onClick={handleLogOut}>Logout</button> 
+        : <Link to='/login'>
           <button className='px-6 py-2 border border-gray-400 rounded-2xl font-medium'>Login</button>
-        </Link>
+        </Link>}
         <Link to='/cart'>
           <div className='relative'>
             <img className='w-[20px]' src={cart_icon} alt="cart" />

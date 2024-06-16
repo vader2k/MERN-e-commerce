@@ -25,7 +25,7 @@ const Login = () => {
       localStorage.setItem("auth", res.data.token)
       window.location.replace('/')
     } catch (error) {
-      console.log(error.message)
+      console.log(error.response.data.message)
     }
   }
 
@@ -35,7 +35,7 @@ const Login = () => {
       localStorage.setItem("auth", res.data.token)
       window.location.replace('/')
     } catch (error) {
-      console.log(error.message)
+      console.log(error.response.data.message)
     }
   }
 
