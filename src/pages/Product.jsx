@@ -11,7 +11,6 @@ const Product = () => {
   const { all_product } = useContext(ShopContext)
   const {id} = useParams();
 
-
   const product = all_product?.find((e) => e.id === Number(id))
 
   return (

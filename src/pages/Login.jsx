@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from 'axios'
 
 const Login = () => {
-
   const [state, setState] = useState("Register");
   const [loginDetails, setLoginDetails] = useState({
     username: "",
@@ -23,7 +22,8 @@ const Login = () => {
         email: loginDetails.email,
         password: loginDetails.password
       })
-      console.log(res.data)
+      localStorage.setItem("auth", res.data.token)
+      window.location.replace('/')
     } catch (error) {
       console.log(error.message)
     }
@@ -32,7 +32,8 @@ const Login = () => {
   const register = async() => {
     try {
       const res = await axios.post("http://localhost:8000/server/v1/register", loginDetails)
-      console.log(res.data)
+      localStorage.setItem("auth", res.data.token)
+      window.location.replace('/')
     } catch (error) {
       console.log(error.message)
     }
