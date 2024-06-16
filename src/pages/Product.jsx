@@ -8,10 +8,10 @@ import RelatedProducts from "../components/RelatedProducts"
 
 
 const Product = () => {
-  const { all_product } = useContext(ShopContext)
+  const { all_products } = useContext(ShopContext)
   const {id} = useParams();
 
-  const product = all_product?.find((e) => e.id === Number(id))
+  const product = all_products?.find((e) => e.id === Number(id))
 
   return (
     <div>
