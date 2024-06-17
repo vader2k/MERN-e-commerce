@@ -26,7 +26,15 @@ const ShopContextProvider = (props) => {
             try {
                 const res = await axios.get("http://localhost:8000/server/v1")
                 setAll_Products(res.data.data)
-                console.log(all_products)
+                console.log(token)
+                if(token){
+                  const res = await axios.post("http://localhost:8000/server/v1/cart", {} ,{
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  });
+                  setCartItems(res.data.cartData);
+                }
             } catch (error) {
                 console.log(error)
             }
@@ -53,7 +61,8 @@ const ShopContextProvider = (props) => {
                 },
   
             });
-            console.log(res); // Log the response here, not as part of the function call
+            console.log(res);
+            
           } catch (error) {
             console.log(error);
           }
@@ -61,8 +70,24 @@ const ShopContextProvider = (props) => {
       };
 
     // Function to remove an item from the cart
-    const removeFromCart = (itemId) => {
+    const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1}));
+        if (token) {
+            try {
+              const res = await axios.post("http://localhost:8000/server/v1/removeFromCart", {
+                id: itemId,
+              },
+              {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+    
+              });
+              console.log(res); // Log the response here, not as part of the function call
+            } catch (error) {
+              console.log(error);
+            }
+          }
     }
 
     // function to return total cart price
