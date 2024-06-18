@@ -26,7 +26,6 @@ const ShopContextProvider = (props) => {
             try {
                 const res = await axios.get("http://localhost:8000/server/v1")
                 setAll_Products(res.data.data)
-                console.log(token)
                 if(token){
                   const res = await axios.post("http://localhost:8000/server/v1/cart", {} ,{
                     headers: {
@@ -71,25 +70,27 @@ const ShopContextProvider = (props) => {
 
     // Function to remove an item from the cart
     const removeFromCart = async (itemId) => {
-        setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1}));
-        if (token) {
-            try {
+      setCartItems((prev) => ({
+        ...prev,
+        [itemId]: (prev[itemId] || 0) - 1, // Check if itemId exists, if not initialize it to 0
+      //   setCartItems((prev) => ({...prev, [itemId]: prev[itemId] + 1}));
+      }));
+  
+      if (token) {
+          try {
               const res = await axios.post("http://localhost:8000/server/v1/removeFromCart", {
-                id: itemId,
-              },
-              {
+                  id: itemId,
+              }, {
                   headers: {
-                    Authorization: `Bearer ${token}`,
+                      Authorization: `Bearer ${token}`,
                   },
-    
               });
               console.log(res); // Log the response here, not as part of the function call
-            } catch (error) {
+          } catch (error) {
               console.log(error);
-            }
           }
-    }
-
+      }
+  };
     // function to return total cart price
     const getTotalCartAmount = () => {
         let total = 0;
